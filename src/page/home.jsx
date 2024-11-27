@@ -136,6 +136,33 @@ const trendingProducts = [
     imageSrc: 'https://tailwindui.com/plus/img/ecommerce-images/home-page-04-trending-product-02.jpg',
     imageAlt: 'Hand stitched, orange leather long wallet.',
   },
+  {
+    id: 1,
+    name: 'Leather Long Wallet',
+    color: 'Natural',
+    price: '$75',
+    href: '#',
+    imageSrc: 'https://tailwindui.com/plus/img/ecommerce-images/home-page-04-trending-product-02.jpg',
+    imageAlt: 'Hand stitched, orange leather long wallet.',
+  },
+  {
+    id: 1,
+    name: 'Leather Long Wallet',
+    color: 'Natural',
+    price: '$75',
+    href: '#',
+    imageSrc: 'https://tailwindui.com/plus/img/ecommerce-images/home-page-04-trending-product-02.jpg',
+    imageAlt: 'Hand stitched, orange leather long wallet.',
+  },
+  {
+    id: 1,
+    name: 'Leather Long Wallet',
+    color: 'Natural',
+    price: '$75',
+    href: '#',
+    imageSrc: 'https://tailwindui.com/plus/img/ecommerce-images/home-page-04-trending-product-02.jpg',
+    imageAlt: 'Hand stitched, orange leather long wallet.',
+  },
   // More products...
 ]
 const perks = [
@@ -188,7 +215,7 @@ const footerNavigation = {
   ],
 }
 
-export default function Example() {
+export default function HomePage() {
   const [open, setOpen] = useState(false)
 
   return (
