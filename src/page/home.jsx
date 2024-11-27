@@ -1,19 +1,3 @@
-/*
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
-*/
-'use client'
-
 import { Fragment, useState } from 'react'
 import {
   Dialog,
@@ -37,6 +21,7 @@ import {
   XMarkIcon,
 } from '@heroicons/react/24/outline'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
+import { Link } from 'react-router-dom'
 
 const currencies = ['CAD', 'USD', 'AUD', 'EUR', 'GBP']
 const navigation = {
@@ -109,19 +94,19 @@ const navigation = {
 const collections = [
   {
     name: "Women's",
-    href: '#',
+    href: 'products',
     imageSrc: 'https://tailwindui.com/plus/img/ecommerce-images/home-page-04-collection-01.jpg',
     imageAlt: 'Woman wearing a comfortable cotton t-shirt.',
   },
   {
     name: "Men's",
-    href: '#',
+    href: '/products',
     imageSrc: 'https://tailwindui.com/plus/img/ecommerce-images/home-page-04-collection-02.jpg',
     imageAlt: 'Man wearing a comfortable and casual cotton t-shirt.',
   },
   {
     name: 'Desk Accessories',
-    href: '#',
+    href: '/products',
     imageSrc: 'https://tailwindui.com/plus/img/ecommerce-images/home-page-04-collection-03.jpg',
     imageAlt: 'Person sitting at a wooden desk with paper note organizer, pencil and tablet.',
   },
@@ -188,32 +173,7 @@ const perks = [
     description: 'We’ve pledged 1% of sales to the preservation and restoration of the natural environment.',
   },
 ]
-const footerNavigation = {
-  products: [
-    { name: 'Bags', href: '#' },
-    { name: 'Tees', href: '#' },
-    { name: 'Objects', href: '#' },
-    { name: 'Home Goods', href: '#' },
-    { name: 'Accessories', href: '#' },
-  ],
-  company: [
-    { name: 'Who we are', href: '#' },
-    { name: 'Sustainability', href: '#' },
-    { name: 'Press', href: '#' },
-    { name: 'Careers', href: '#' },
-    { name: 'Terms & Conditions', href: '#' },
-    { name: 'Privacy', href: '#' },
-  ],
-  customerService: [
-    { name: 'Contact', href: '#' },
-    { name: 'Shipping', href: '#' },
-    { name: 'Returns', href: '#' },
-    { name: 'Warranty', href: '#' },
-    { name: 'Secure Payments', href: '#' },
-    { name: 'FAQ', href: '#' },
-    { name: 'Find a store', href: '#' },
-  ],
-}
+
 
 export default function HomePage() {
   const [open, setOpen] = useState(false)
@@ -293,18 +253,7 @@ export default function HomePage() {
               ))}
             </div>
 
-            <div className="space-y-6 border-t border-gray-200 px-4 py-6">
-              <div className="flow-root">
-                <a href="#" className="-m-2 block p-2 font-medium text-gray-900">
-                  Create an account
-                </a>
-              </div>
-              <div className="flow-root">
-                <a href="#" className="-m-2 block p-2 font-medium text-gray-900">
-                  Sign in
-                </a>
-              </div>
-            </div>
+ 
 
             <div className="space-y-6 border-t border-gray-200 px-4 py-6">
               {/* Currency selector */}
@@ -337,41 +286,7 @@ export default function HomePage() {
       <header className="relative">
         <nav aria-label="Top">
           {/* Top navigation */}
-          <div className="bg-gray-900">
-            <div className="mx-auto flex h-10 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-              {/* Currency selector */}
-              <form>
-                <div>
-                  <label htmlFor="desktop-currency" className="sr-only">
-                    Currency
-                  </label>
-                  <div className="group relative -ml-2 rounded-md border-transparent bg-gray-900 focus-within:ring-2 focus-within:ring-white">
-                    <select
-                      id="desktop-currency"
-                      name="currency"
-                      className="flex items-center rounded-md border-transparent bg-gray-900 bg-none py-0.5 pl-2 pr-5 text-sm font-medium text-white focus:border-transparent focus:outline-none focus:ring-0 group-hover:text-gray-100"
-                    >
-                      {currencies.map((currency) => (
-                        <option key={currency}>{currency}</option>
-                      ))}
-                    </select>
-                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center">
-                      <ChevronDownIcon aria-hidden="true" className="size-5 text-gray-300" />
-                    </div>
-                  </div>
-                </div>
-              </form>
-
-              <div className="flex items-center space-x-6">
-                <a href="#" className="text-sm font-medium text-white hover:text-gray-100">
-                  Sign in
-                </a>
-                <a href="#" className="text-sm font-medium text-white hover:text-gray-100">
-                  Create an account
-                </a>
-              </div>
-            </div>
-          </div>
+        
 
           {/* Secondary navigation */}
           <div className="bg-white">
@@ -585,10 +500,10 @@ export default function HomePage() {
                         Shop the collection
                       </p>
                       <h3 className="mt-1 font-semibold text-white">
-                        <a href={collection.href}>
+                        <Link to={collection.href}>
                           <span className="absolute inset-0" />
                           {collection.name}
-                        </a>
+                        </Link>
                       </h3>
                     </div>
                   </div>
@@ -664,98 +579,6 @@ export default function HomePage() {
           </div>
         </section>
       </main>
-
-      <footer aria-labelledby="footer-heading" className="bg-gray-50">
-        <h2 id="footer-heading" className="sr-only">
-          Footer
-        </h2>
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="border-t border-gray-200 py-20">
-            <div className="grid grid-cols-1 md:grid-flow-col md:auto-rows-min md:grid-cols-12 md:gap-x-8 md:gap-y-16">
-              {/* Image section */}
-              <div className="col-span-1 md:col-span-2 lg:col-start-1 lg:row-start-1">
-                <img
-                  alt=""
-                  src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600"
-                  className="h-8 w-auto"
-                />
-              </div>
-
-              {/* Sitemap sections */}
-              <div className="col-span-6 mt-10 grid grid-cols-2 gap-8 sm:grid-cols-3 md:col-span-8 md:col-start-3 md:row-start-1 md:mt-0 lg:col-span-6 lg:col-start-2">
-                <div className="grid grid-cols-1 gap-y-12 sm:col-span-2 sm:grid-cols-2 sm:gap-x-8">
-                  <div>
-                    <h3 className="text-sm font-medium text-gray-900">Products</h3>
-                    <ul role="list" className="mt-6 space-y-6">
-                      {footerNavigation.products.map((item) => (
-                        <li key={item.name} className="text-sm">
-                          <a href={item.href} className="text-gray-500 hover:text-gray-600">
-                            {item.name}
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div>
-                    <h3 className="text-sm font-medium text-gray-900">Company</h3>
-                    <ul role="list" className="mt-6 space-y-6">
-                      {footerNavigation.company.map((item) => (
-                        <li key={item.name} className="text-sm">
-                          <a href={item.href} className="text-gray-500 hover:text-gray-600">
-                            {item.name}
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-                <div>
-                  <h3 className="text-sm font-medium text-gray-900">Customer Service</h3>
-                  <ul role="list" className="mt-6 space-y-6">
-                    {footerNavigation.customerService.map((item) => (
-                      <li key={item.name} className="text-sm">
-                        <a href={item.href} className="text-gray-500 hover:text-gray-600">
-                          {item.name}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-
-              {/* Newsletter section */}
-              <div className="mt-12 md:col-span-8 md:col-start-3 md:row-start-2 md:mt-0 lg:col-span-4 lg:col-start-9 lg:row-start-1">
-                <h3 className="text-sm font-medium text-gray-900">Sign up for our newsletter</h3>
-                <p className="mt-6 text-sm text-gray-500">The latest deals and savings, sent to your inbox weekly.</p>
-                <form className="mt-2 flex sm:max-w-md">
-                  <label htmlFor="email-address" className="sr-only">
-                    Email address
-                  </label>
-                  <input
-                    id="email-address"
-                    type="text"
-                    required
-                    autoComplete="email"
-                    className="w-full min-w-0 appearance-none rounded-md border border-gray-300 bg-white px-4 py-2 text-base text-gray-900 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
-                  />
-                  <div className="ml-4 shrink-0">
-                    <button
-                      type="submit"
-                      className="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                    >
-                      Sign up
-                    </button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-
-          <div className="border-t border-gray-100 py-10 text-center">
-            <p className="text-sm text-gray-500">&copy; 2021 Your Company, Inc. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
     </div>
   )
 }

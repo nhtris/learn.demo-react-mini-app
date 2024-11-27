@@ -1,19 +1,3 @@
-/*
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
-*/
-'use client'
-
 import { Fragment, useState } from 'react'
 import {
   Dialog,
@@ -38,6 +22,7 @@ import {
 } from '@headlessui/react'
 import { Bars3Icon, MagnifyingGlassIcon, ShoppingBagIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, FunnelIcon, MinusIcon, PlusIcon, Squares2X2Icon } from '@heroicons/react/20/solid'
+import { Link } from 'react-router-dom'
 
 const navigation = {
   categories: [
@@ -216,16 +201,16 @@ const products = [
   {
     id: 1,
     name: 'Nomad Pouch',
-    href: '#',
+    href: '/product-detail',
     price: '$50',
     availability: 'White and Black',
-    imageSrc: 'https://tailwindui.com/plus/img/ecommerce-images/category-page-07-product-01.jpg',
+    imageSrc: 'https://tailwindui.com/plus/img/ecommerce-images/product-page-04-featured-product-shot.jpg',
     imageAlt: 'White fabric pouch with white zipper, black zipper pull, and black elastic loop.',
   },
   {
     id: 2,
     name: 'Zip Tote Basket',
-    href: '#',
+    href: '/product-detail',
     price: '$140',
     availability: 'Washed Black',
     imageSrc: 'https://tailwindui.com/plus/img/ecommerce-images/category-page-07-product-02.jpg',
@@ -233,33 +218,7 @@ const products = [
   },
   // More products...
 ]
-const footerNavigation = {
-  account: [
-    { name: 'Manage Account', href: '#' },
-    { name: 'Saved Items', href: '#' },
-    { name: 'Orders', href: '#' },
-    { name: 'Redeem Gift card', href: '#' },
-  ],
-  service: [
-    { name: 'Shipping & Returns', href: '#' },
-    { name: 'Warranty', href: '#' },
-    { name: 'FAQ', href: '#' },
-    { name: 'Find a store', href: '#' },
-    { name: 'Get in touch', href: '#' },
-  ],
-  company: [
-    { name: 'Who we are', href: '#' },
-    { name: 'Press', href: '#' },
-    { name: 'Careers', href: '#' },
-    { name: 'Terms & Conditions', href: '#' },
-    { name: 'Privacy', href: '#' },
-  ],
-  connect: [
-    { name: 'Facebook', href: '#' },
-    { name: 'Instagram', href: '#' },
-    { name: 'Pinterest', href: '#' },
-  ],
-}
+
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -414,14 +373,14 @@ export default function ProductsPage() {
 
                 {/* Logo */}
                 <div className="ml-4 flex lg:ml-0">
-                  <a href="#">
+                  <Link to='/'>
                     <span className="sr-only">Your Company</span>
                     <img
                       alt=""
                       src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600"
                       className="h-8 w-auto"
                     />
-                  </a>
+                  </Link>
                 </div>
 
                 {/* Flyout menus */}
@@ -755,75 +714,7 @@ export default function ProductsPage() {
           </section>
         </main>
 
-        <footer aria-labelledby="footer-heading" className="bg-white">
-          <h2 id="footer-heading" className="sr-only">
-            Footer
-          </h2>
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-2 gap-8 border-t border-gray-200 py-20 sm:grid-cols-2 sm:gap-y-0 lg:grid-cols-4">
-              <div className="grid grid-cols-1 gap-y-10 lg:col-span-2 lg:grid-cols-2 lg:gap-x-8 lg:gap-y-0">
-                <div>
-                  <h3 className="text-sm font-medium text-gray-900">Account</h3>
-                  <ul role="list" className="mt-6 space-y-6">
-                    {footerNavigation.account.map((item) => (
-                      <li key={item.name} className="text-sm">
-                        <a href={item.href} className="text-gray-500 hover:text-gray-600">
-                          {item.name}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div>
-                  <h3 className="text-sm font-medium text-gray-900">Service</h3>
-                  <ul role="list" className="mt-6 space-y-6">
-                    {footerNavigation.service.map((item) => (
-                      <li key={item.name} className="text-sm">
-                        <a href={item.href} className="text-gray-500 hover:text-gray-600">
-                          {item.name}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-              <div className="grid grid-cols-1 gap-y-10 lg:col-span-2 lg:grid-cols-2 lg:gap-x-8 lg:gap-y-0">
-                <div>
-                  <h3 className="text-sm font-medium text-gray-900">Company</h3>
-                  <ul role="list" className="mt-6 space-y-6">
-                    {footerNavigation.company.map((item) => (
-                      <li key={item.name} className="text-sm">
-                        <a href={item.href} className="text-gray-500 hover:text-gray-600">
-                          {item.name}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div>
-                  <h3 className="text-sm font-medium text-gray-900">Connect</h3>
-                  <ul role="list" className="mt-6 space-y-6">
-                    {footerNavigation.connect.map((item) => (
-                      <li key={item.name} className="text-sm">
-                        <a href={item.href} className="text-gray-500 hover:text-gray-600">
-                          {item.name}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <div className="border-t border-gray-100 py-10 sm:flex sm:items-center sm:justify-between">
-              <div className="flex items-center justify-center text-sm text-gray-500">
-                <p>Shipping to Canada ($CAD)</p>
-                <p className="ml-3 border-l border-gray-200 pl-3">English</p>
-              </div>
-              <p className="mt-6 text-center text-sm text-gray-500 sm:mt-0">&copy; 2021 Your Company, Inc.</p>
-            </div>
-          </div>
-        </footer>
+       
       </div>
     </div>
   )
