@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react'
+import { Fragment, useState } from "react";
 import {
   Dialog,
   DialogBackdrop,
@@ -12,174 +12,203 @@ import {
   TabList,
   TabPanel,
   TabPanels,
-} from '@headlessui/react'
+} from "@headlessui/react";
 import {
   Bars3Icon,
   MagnifyingGlassIcon,
   QuestionMarkCircleIcon,
   ShoppingBagIcon,
   XMarkIcon,
-} from '@heroicons/react/24/outline'
-import { ChevronDownIcon } from '@heroicons/react/20/solid'
-import { Link } from 'react-router-dom'
+} from "@heroicons/react/24/outline";
+import { ChevronDownIcon } from "@heroicons/react/20/solid";
+import { Link } from "react-router-dom";
+import Footer from "../components/Footer";
 
-const currencies = ['CAD', 'USD', 'AUD', 'EUR', 'GBP']
+const currencies = ["CAD", "USD", "AUD", "EUR", "GBP"];
 const navigation = {
   categories: [
     {
-      name: 'Women',
+      name: "Women",
       featured: [
         {
-          name: 'New Arrivals',
-          href: '#',
-          imageSrc: 'https://tailwindui.com/plus/img/ecommerce-images/mega-menu-category-01.jpg',
-          imageAlt: 'Models sitting back to back, wearing Basic Tee in black and bone.',
+          name: "New Arrivals",
+          href: "#",
+          imageSrc:
+            "https://tailwindui.com/plus/img/ecommerce-images/mega-menu-category-01.jpg",
+          imageAlt:
+            "Models sitting back to back, wearing Basic Tee in black and bone.",
         },
         {
-          name: 'Basic Tees',
-          href: '#',
-          imageSrc: 'https://tailwindui.com/plus/img/ecommerce-images/mega-menu-category-02.jpg',
-          imageAlt: 'Close up of Basic Tee fall bundle with off-white, ochre, olive, and black tees.',
+          name: "Basic Tees",
+          href: "#",
+          imageSrc:
+            "https://tailwindui.com/plus/img/ecommerce-images/mega-menu-category-02.jpg",
+          imageAlt:
+            "Close up of Basic Tee fall bundle with off-white, ochre, olive, and black tees.",
         },
         {
-          name: 'Accessories',
-          href: '#',
-          imageSrc: 'https://tailwindui.com/plus/img/ecommerce-images/mega-menu-category-03.jpg',
-          imageAlt: 'Model wearing minimalist watch with black wristband and white watch face.',
+          name: "Accessories",
+          href: "#",
+          imageSrc:
+            "https://tailwindui.com/plus/img/ecommerce-images/mega-menu-category-03.jpg",
+          imageAlt:
+            "Model wearing minimalist watch with black wristband and white watch face.",
         },
         {
-          name: 'Carry',
-          href: '#',
-          imageSrc: 'https://tailwindui.com/plus/img/ecommerce-images/mega-menu-category-04.jpg',
-          imageAlt: 'Model opening tan leather long wallet with credit card pockets and cash pouch.',
+          name: "Carry",
+          href: "#",
+          imageSrc:
+            "https://tailwindui.com/plus/img/ecommerce-images/mega-menu-category-04.jpg",
+          imageAlt:
+            "Model opening tan leather long wallet with credit card pockets and cash pouch.",
         },
       ],
     },
     {
-      name: 'Men',
+      name: "Men",
       featured: [
         {
-          name: 'New Arrivals',
-          href: '#',
-          imageSrc: 'https://tailwindui.com/plus/img/ecommerce-images/mega-menu-01-men-category-01.jpg',
-          imageAlt: 'Hats and sweaters on wood shelves next to various colors of t-shirts on hangers.',
-        },
-        {
-          name: 'Basic Tees',
-          href: '#',
-          imageSrc: 'https://tailwindui.com/plus/img/ecommerce-images/mega-menu-01-men-category-02.jpg',
-          imageAlt: 'Model wearing light heather gray t-shirt.',
-        },
-        {
-          name: 'Accessories',
-          href: '#',
-          imageSrc: 'https://tailwindui.com/plus/img/ecommerce-images/mega-menu-01-men-category-03.jpg',
+          name: "New Arrivals",
+          href: "#",
+          imageSrc:
+            "https://tailwindui.com/plus/img/ecommerce-images/mega-menu-01-men-category-01.jpg",
           imageAlt:
-            'Grey 6-panel baseball hat with black brim, black mountain graphic on front, and light heather gray body.',
+            "Hats and sweaters on wood shelves next to various colors of t-shirts on hangers.",
         },
         {
-          name: 'Carry',
-          href: '#',
-          imageSrc: 'https://tailwindui.com/plus/img/ecommerce-images/mega-menu-01-men-category-04.jpg',
-          imageAlt: 'Model putting folded cash into slim card holder olive leather wallet with hand stitching.',
+          name: "Basic Tees",
+          href: "#",
+          imageSrc:
+            "https://tailwindui.com/plus/img/ecommerce-images/mega-menu-01-men-category-02.jpg",
+          imageAlt: "Model wearing light heather gray t-shirt.",
+        },
+        {
+          name: "Accessories",
+          href: "#",
+          imageSrc:
+            "https://tailwindui.com/plus/img/ecommerce-images/mega-menu-01-men-category-03.jpg",
+          imageAlt:
+            "Grey 6-panel baseball hat with black brim, black mountain graphic on front, and light heather gray body.",
+        },
+        {
+          name: "Carry",
+          href: "#",
+          imageSrc:
+            "https://tailwindui.com/plus/img/ecommerce-images/mega-menu-01-men-category-04.jpg",
+          imageAlt:
+            "Model putting folded cash into slim card holder olive leather wallet with hand stitching.",
         },
       ],
     },
   ],
   pages: [
-    { name: 'Company', href: '#' },
-    { name: 'Stores', href: '#' },
+    { name: "Company", href: "#" },
+    { name: "Stores", href: "#" },
   ],
-}
+};
 const collections = [
   {
     name: "Women's",
-    href: 'products',
-    imageSrc: 'https://tailwindui.com/plus/img/ecommerce-images/home-page-04-collection-01.jpg',
-    imageAlt: 'Woman wearing a comfortable cotton t-shirt.',
+    href: "products",
+    imageSrc:
+      "https://tailwindui.com/plus/img/ecommerce-images/home-page-04-collection-01.jpg",
+    imageAlt: "Woman wearing a comfortable cotton t-shirt.",
   },
   {
     name: "Men's",
-    href: '/products',
-    imageSrc: 'https://tailwindui.com/plus/img/ecommerce-images/home-page-04-collection-02.jpg',
-    imageAlt: 'Man wearing a comfortable and casual cotton t-shirt.',
+    href: "/products",
+    imageSrc:
+      "https://tailwindui.com/plus/img/ecommerce-images/home-page-04-collection-02.jpg",
+    imageAlt: "Man wearing a comfortable and casual cotton t-shirt.",
   },
   {
-    name: 'Desk Accessories',
-    href: '/products',
-    imageSrc: 'https://tailwindui.com/plus/img/ecommerce-images/home-page-04-collection-03.jpg',
-    imageAlt: 'Person sitting at a wooden desk with paper note organizer, pencil and tablet.',
+    name: "Desk Accessories",
+    href: "/products",
+    imageSrc:
+      "https://tailwindui.com/plus/img/ecommerce-images/home-page-04-collection-03.jpg",
+    imageAlt:
+      "Person sitting at a wooden desk with paper note organizer, pencil and tablet.",
   },
-]
+];
 const trendingProducts = [
   {
     id: 1,
-    name: 'Leather Long Wallet',
-    color: 'Natural',
-    price: '$75',
-    href: '#',
-    imageSrc: 'https://tailwindui.com/plus/img/ecommerce-images/home-page-04-trending-product-02.jpg',
-    imageAlt: 'Hand stitched, orange leather long wallet.',
+    name: "Leather Long Wallet",
+    color: "Natural",
+    price: "$75",
+    href: "#",
+    imageSrc:
+      "https://tailwindui.com/plus/img/ecommerce-images/home-page-04-trending-product-02.jpg",
+    imageAlt: "Hand stitched, orange leather long wallet.",
   },
   {
-    id: 1,
-    name: 'Leather Long Wallet',
-    color: 'Natural',
-    price: '$75',
-    href: '#',
-    imageSrc: 'https://tailwindui.com/plus/img/ecommerce-images/home-page-04-trending-product-02.jpg',
-    imageAlt: 'Hand stitched, orange leather long wallet.',
+    id: 2,
+    name: "Leather Long Wallet",
+    color: "Natural",
+    price: "$75",
+    href: "#",
+    imageSrc:
+      "https://tailwindui.com/plus/img/ecommerce-images/home-page-04-trending-product-02.jpg",
+    imageAlt: "Hand stitched, orange leather long wallet.",
   },
   {
-    id: 1,
-    name: 'Leather Long Wallet',
-    color: 'Natural',
-    price: '$75',
-    href: '#',
-    imageSrc: 'https://tailwindui.com/plus/img/ecommerce-images/home-page-04-trending-product-02.jpg',
-    imageAlt: 'Hand stitched, orange leather long wallet.',
+    id: 3,
+    name: "Leather Long Wallet",
+    color: "Natural",
+    price: "$75",
+    href: "#",
+    imageSrc:
+      "https://tailwindui.com/plus/img/ecommerce-images/home-page-04-trending-product-02.jpg",
+    imageAlt: "Hand stitched, orange leather long wallet.",
   },
   {
-    id: 1,
-    name: 'Leather Long Wallet',
-    color: 'Natural',
-    price: '$75',
-    href: '#',
-    imageSrc: 'https://tailwindui.com/plus/img/ecommerce-images/home-page-04-trending-product-02.jpg',
-    imageAlt: 'Hand stitched, orange leather long wallet.',
+    id: 4,
+    name: "Leather Long Wallet",
+    color: "Natural",
+    price: "$75",
+    href: "#",
+    imageSrc:
+      "https://tailwindui.com/plus/img/ecommerce-images/home-page-04-trending-product-02.jpg",
+    imageAlt: "Hand stitched, orange leather long wallet.",
   },
   // More products...
-]
+];
 const perks = [
   {
-    name: 'Free returns',
-    imageUrl: 'https://tailwindui.com/plus/img/ecommerce/icons/icon-returns-light.svg',
-    description: 'Not what you expected? Place it back in the parcel and attach the pre-paid postage stamp.',
-  },
-  {
-    name: 'Same day delivery',
-    imageUrl: 'https://tailwindui.com/plus/img/ecommerce/icons/icon-calendar-light.svg',
+    name: "Free returns",
+    imageUrl:
+      "https://tailwindui.com/plus/img/ecommerce/icons/icon-returns-light.svg",
     description:
-      'We offer a delivery service that has never been done before. Checkout today and receive your products within hours.',
+      "Not what you expected? Place it back in the parcel and attach the pre-paid postage stamp.",
   },
   {
-    name: 'All year discount',
-    imageUrl: 'https://tailwindui.com/plus/img/ecommerce/icons/icon-gift-card-light.svg',
-    description: 'Looking for a deal? You can use the code "ALLYEAR" at checkout and get money off all year round.',
+    name: "Same day delivery",
+    imageUrl:
+      "https://tailwindui.com/plus/img/ecommerce/icons/icon-calendar-light.svg",
+    description:
+      "We offer a delivery service that has never been done before. Checkout today and receive your products within hours.",
   },
   {
-    name: 'For the planet',
-    imageUrl: 'https://tailwindui.com/plus/img/ecommerce/icons/icon-planet-light.svg',
-    description: 'We’ve pledged 1% of sales to the preservation and restoration of the natural environment.',
+    name: "All year discount",
+    imageUrl:
+      "https://tailwindui.com/plus/img/ecommerce/icons/icon-gift-card-light.svg",
+    description:
+      'Looking for a deal? You can use the code "ALLYEAR" at checkout and get money off all year round.',
   },
-]
-
+  {
+    name: "For the planet",
+    imageUrl:
+      "https://tailwindui.com/plus/img/ecommerce/icons/icon-planet-light.svg",
+    description:
+      "We’ve pledged 1% of sales to the preservation and restoration of the natural environment.",
+  },
+];
 
 export default function HomePage() {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
 
   return (
-    <div className="bg-white">
+    <div className="bg-white dark:bg-neutral-400">
       {/* Mobile menu */}
       <Dialog open={open} onClose={setOpen} className="relative z-40 lg:hidden">
         <DialogBackdrop
@@ -219,7 +248,10 @@ export default function HomePage() {
               </div>
               <TabPanels as={Fragment}>
                 {navigation.categories.map((category) => (
-                  <TabPanel key={category.name} className="space-y-12 px-4 py-6">
+                  <TabPanel
+                    key={category.name}
+                    className="space-y-12 px-4 py-6"
+                  >
                     <div className="grid grid-cols-2 gap-x-4 gap-y-10">
                       {category.featured.map((item) => (
                         <div key={item.name} className="group relative">
@@ -228,11 +260,20 @@ export default function HomePage() {
                             src={item.imageSrc}
                             className="aspect-square w-full rounded-md bg-gray-100 object-cover group-hover:opacity-75"
                           />
-                          <a href={item.href} className="mt-6 block text-sm font-medium text-gray-900">
-                            <span aria-hidden="true" className="absolute inset-0 z-10" />
+                          <a
+                            href={item.href}
+                            className="mt-6 block text-sm font-medium text-gray-900"
+                          >
+                            <span
+                              aria-hidden="true"
+                              className="absolute inset-0 z-10"
+                            />
                             {item.name}
                           </a>
-                          <p aria-hidden="true" className="mt-1 text-sm text-gray-500">
+                          <p
+                            aria-hidden="true"
+                            className="mt-1 text-sm text-gray-500"
+                          >
                             Shop now
                           </p>
                         </div>
@@ -246,14 +287,15 @@ export default function HomePage() {
             <div className="space-y-6 border-t border-gray-200 px-4 py-6">
               {navigation.pages.map((page) => (
                 <div key={page.name} className="flow-root">
-                  <a href={page.href} className="-m-2 block p-2 font-medium text-gray-900">
+                  <a
+                    href={page.href}
+                    className="-m-2 block p-2 font-medium text-gray-900"
+                  >
                     {page.name}
                   </a>
                 </div>
               ))}
             </div>
-
- 
 
             <div className="space-y-6 border-t border-gray-200 px-4 py-6">
               {/* Currency selector */}
@@ -273,7 +315,10 @@ export default function HomePage() {
                       ))}
                     </select>
                     <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center">
-                      <ChevronDownIcon aria-hidden="true" className="size-5 text-gray-500" />
+                      <ChevronDownIcon
+                        aria-hidden="true"
+                        className="size-5 text-gray-500"
+                      />
                     </div>
                   </div>
                 </div>
@@ -286,12 +331,11 @@ export default function HomePage() {
       <header className="relative">
         <nav aria-label="Top">
           {/* Top navigation */}
-        
 
           {/* Secondary navigation */}
           <div className="bg-white">
-            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-              <div className="flex h-16 items-center justify-between">
+            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 dark:bg-neutral-500">
+              <div className="flex h-16 items-center justify-between ">
                 {/* Logo (lg+) */}
                 <div className="hidden lg:flex lg:flex-1 lg:items-center">
                   <a href="#">
@@ -325,9 +369,15 @@ export default function HomePage() {
                             className="group absolute inset-x-0 top-full z-10 bg-white text-sm text-gray-500 transition data-[closed]:opacity-0 data-[enter]:duration-200 data-[leave]:duration-150 data-[enter]:ease-out data-[leave]:ease-in"
                           >
                             {/* Presentational element used to render the bottom shadow, if we put the shadow on the actual panel it pokes out the top, so we use this shorter element to hide the top of the shadow */}
-                            <div aria-hidden="true" className="absolute inset-0 top-1/2 bg-white shadow" />
+                            <div
+                              aria-hidden="true"
+                              className="absolute inset-0 top-1/2 bg-white shadow"
+                            />
                             {/* Fake border when menu is open */}
-                            <div aria-hidden="true" className="absolute inset-0 top-0 mx-auto h-px max-w-7xl px-8">
+                            <div
+                              aria-hidden="true"
+                              className="absolute inset-0 top-0 mx-auto h-px max-w-7xl px-8"
+                            >
                               <div className="h-px w-full bg-transparent transition-colors duration-200 ease-out group-data-[open]:bg-gray-200" />
                             </div>
 
@@ -335,14 +385,23 @@ export default function HomePage() {
                               <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                                 <div className="grid grid-cols-4 gap-x-8 gap-y-10 py-16">
                                   {category.featured.map((item) => (
-                                    <div key={item.name} className="group relative">
+                                    <div
+                                      key={item.name}
+                                      className="group relative"
+                                    >
                                       <img
                                         alt={item.imageAlt}
                                         src={item.imageSrc}
                                         className="aspect-square w-full rounded-md bg-gray-100 object-cover group-hover:opacity-75"
                                       />
-                                      <a href={item.href} className="mt-4 block font-medium text-gray-900">
-                                        <span aria-hidden="true" className="absolute inset-0 z-10" />
+                                      <a
+                                        href={item.href}
+                                        className="mt-4 block font-medium text-gray-900"
+                                      >
+                                        <span
+                                          aria-hidden="true"
+                                          className="absolute inset-0 z-10"
+                                        />
                                         {item.name}
                                       </a>
                                       <p aria-hidden="true" className="mt-1">
@@ -371,20 +430,26 @@ export default function HomePage() {
                 </div>
 
                 {/* Mobile menu and search (lg-) */}
-                <div className="flex flex-1 items-center lg:hidden">
+                <div className="flex flex-1 items-center lg:hidde">
                   <button
                     type="button"
                     onClick={() => setOpen(true)}
-                    className="-ml-2 rounded-md bg-white p-2 text-gray-400"
+                    className="-ml-2 rounded-md bg-white p-2 text-gray-400 dark:bg-neutral-500 dark:text-white"
                   >
                     <span className="sr-only">Open menu</span>
                     <Bars3Icon aria-hidden="true" className="size-6" />
                   </button>
 
                   {/* Search */}
-                  <a href="#" className="ml-2 p-2 text-gray-400 hover:text-gray-500">
+                  <a
+                    href="#"
+                    className="ml-2 p-2 text-gray-400 hover:text-gray-500"
+                  >
                     <span className="sr-only">Search</span>
-                    <MagnifyingGlassIcon aria-hidden="true" className="size-6" />
+                    <MagnifyingGlassIcon
+                      aria-hidden="true"
+                      className="size-6"
+                    />
                   </a>
                 </div>
 
@@ -399,17 +464,29 @@ export default function HomePage() {
                 </a>
 
                 <div className="flex flex-1 items-center justify-end">
-                  <a href="#" className="hidden text-sm font-medium text-gray-700 hover:text-gray-800 lg:block">
+                  <a
+                    href="#"
+                    className="hidden text-sm font-medium text-gray-700 hover:text-gray-800 lg:block"
+                  >
                     Search
                   </a>
 
                   <div className="flex items-center lg:ml-8">
                     {/* Help */}
-                    <a href="#" className="p-2 text-gray-400 hover:text-gray-500 lg:hidden">
+                    <a
+                      href="#"
+                      className="p-2 text-gray-400 hover:text-gray-500 lg:hidden"
+                    >
                       <span className="sr-only">Help</span>
-                      <QuestionMarkCircleIcon aria-hidden="true" className="size-6" />
+                      <QuestionMarkCircleIcon
+                        aria-hidden="true"
+                        className="size-6"
+                      />
                     </a>
-                    <a href="#" className="hidden text-sm font-medium text-gray-700 hover:text-gray-800 lg:block">
+                    <a
+                      href="#"
+                      className="hidden text-sm font-medium text-gray-700 hover:text-gray-800 lg:block"
+                    >
                       Help
                     </a>
 
@@ -420,7 +497,9 @@ export default function HomePage() {
                           aria-hidden="true"
                           className="size-6 shrink-0 text-gray-400 group-hover:text-gray-500"
                         />
-                        <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">0</span>
+                        <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">
+                          0
+                        </span>
                         <span className="sr-only">items in cart, view bag</span>
                       </a>
                     </div>
@@ -436,7 +515,10 @@ export default function HomePage() {
         {/* Hero section */}
         <div className="relative">
           {/* Background image and overlap */}
-          <div aria-hidden="true" className="absolute inset-0 hidden sm:flex sm:flex-col">
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 hidden sm:flex sm:flex-col"
+          >
             <div className="relative w-full flex-1 bg-gray-800">
               <div className="absolute inset-0 overflow-hidden">
                 <img
@@ -452,7 +534,10 @@ export default function HomePage() {
 
           <div className="relative mx-auto max-w-3xl px-4 pb-96 text-center sm:px-6 sm:pb-0 lg:px-8">
             {/* Background image and overlap */}
-            <div aria-hidden="true" className="absolute inset-0 flex flex-col sm:hidden">
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 flex flex-col sm:hidden"
+            >
               <div className="relative w-full flex-1 bg-gray-800">
                 <div className="absolute inset-0 overflow-hidden">
                   <img
@@ -463,10 +548,12 @@ export default function HomePage() {
                 </div>
                 <div className="absolute inset-0 bg-gray-900 opacity-50" />
               </div>
-              <div className="h-48 w-full bg-white" />
+              <div className="h-48 w-full bg-white dark:bg-neutral-400" />
             </div>
             <div className="relative py-32">
-              <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl">Mid-Season Sale</h1>
+              <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl">
+                Mid-Season Sale
+              </h1>
               <div className="mt-4 sm:mt-6">
                 <a
                   href="#"
@@ -478,7 +565,10 @@ export default function HomePage() {
             </div>
           </div>
 
-          <section aria-labelledby="collection-heading" className="relative -mt-96 sm:mt-0">
+          <section
+            aria-labelledby="collection-heading"
+            className="relative -mt-96 sm:mt-0 "
+          >
             <h2 id="collection-heading" className="sr-only">
               Collections
             </h2>
@@ -488,9 +578,16 @@ export default function HomePage() {
                   key={collection.name}
                   className="group relative h-96 rounded-lg bg-white shadow-xl sm:aspect-[4/5] sm:h-auto"
                 >
-                  <div aria-hidden="true" className="absolute inset-0 overflow-hidden rounded-lg">
+                  <div
+                    aria-hidden="true"
+                    className="absolute inset-0 overflow-hidden rounded-lg"
+                  >
                     <div className="absolute inset-0 overflow-hidden group-hover:opacity-75">
-                      <img alt={collection.imageAlt} src={collection.imageSrc} className="size-full object-cover" />
+                      <img
+                        alt={collection.imageAlt}
+                        src={collection.imageSrc}
+                        className="size-full object-cover"
+                      />
                     </div>
                     <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-50" />
                   </div>
@@ -514,12 +611,18 @@ export default function HomePage() {
         </div>
 
         <section aria-labelledby="trending-heading">
-          <div className="mx-auto max-w-7xl px-4 py-24 sm:px-6 sm:py-32 lg:px-8 lg:pt-32">
+          <div className="mx-auto max-w-7xl px-4 py-24 sm:px-6 sm:py-32 lg:px-8 lg:pt-32 dark:bg-neutral-400">
             <div className="md:flex md:items-center md:justify-between">
-              <h2 id="favorites-heading" className="text-2xl font-bold tracking-tight text-gray-900">
+              <h2
+                id="favorites-heading"
+                className="text-2xl font-bold tracking-tight text-gray-900"
+              >
                 Trending Products
               </h2>
-              <a href="#" className="hidden text-sm font-medium text-indigo-600 hover:text-indigo-500 md:block">
+              <a
+                href="#"
+                className="hidden text-sm font-medium text-indigo-600 hover:text-indigo-500 md:block"
+              >
                 Shop the collection
                 <span aria-hidden="true"> &rarr;</span>
               </a>
@@ -529,7 +632,11 @@ export default function HomePage() {
               {trendingProducts.map((product) => (
                 <div key={product.id} className="group relative">
                   <div className="h-56 w-full overflow-hidden rounded-md group-hover:opacity-75 lg:h-72 xl:h-80">
-                    <img alt={product.imageAlt} src={product.imageSrc} className="size-full object-cover" />
+                    <img
+                      alt={product.imageAlt}
+                      src={product.imageSrc}
+                      className="size-full object-cover"
+                    />
                   </div>
                   <h3 className="mt-4 text-sm text-gray-700">
                     <a href={product.href}>
@@ -538,13 +645,18 @@ export default function HomePage() {
                     </a>
                   </h3>
                   <p className="mt-1 text-sm text-gray-500">{product.color}</p>
-                  <p className="mt-1 text-sm font-medium text-gray-900">{product.price}</p>
+                  <p className="mt-1 text-sm font-medium text-gray-900">
+                    {product.price}
+                  </p>
                 </div>
               ))}
             </div>
 
             <div className="mt-8 text-sm md:hidden">
-              <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
+              <a
+                href="#"
+                className="font-medium text-indigo-600 hover:text-indigo-500"
+              >
                 Shop the collection
                 <span aria-hidden="true"> &rarr;</span>
               </a>
@@ -552,26 +664,47 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section aria-labelledby="perks-heading" className="border-t border-gray-200 bg-gray-50">
+        <section
+          aria-labelledby="perks-heading"
+          className="border-t border-gray-200 bg-gray-50"
+        >
           <h2 id="perks-heading" className="sr-only">
             Our perks
           </h2>
 
-          <div className="mx-auto max-w-7xl px-4 py-24 sm:px-6 sm:py-32 lg:px-8">
+          <div className="mx-auto max-w-7xl px-4 py-24 sm:px-6 sm:py-32 lg:px-8 dark:bg-neutral-400">
             <div className="grid grid-cols-1 gap-y-12 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-4 lg:gap-x-8 lg:gap-y-0">
-              {perks.map((perk) => (
+              {perks.map((perk, indx) => (
                 <div
                   key={perk.name}
                   className="text-center md:flex md:items-start md:text-left lg:block lg:text-center"
                 >
                   <div className="md:shrink-0">
                     <div className="flow-root">
-                      <img alt="" src={perk.imageUrl} className="-my-1 mx-auto h-24 w-auto" />
+                      {indx === 3 ? (
+                        <Link to="/app-info">
+                          <img
+                            alt=""
+                            src={perk.imageUrl}
+                            className="-my-1 mx-auto h-24 w-auto"
+                          />
+                        </Link>
+                      ) : (
+                        <img
+                          alt=""
+                          src={perk.imageUrl}
+                          className="-my-1 mx-auto h-24 w-auto"
+                        />
+                      )}
                     </div>
                   </div>
                   <div className="mt-6 md:ml-4 md:mt-0 lg:ml-0 lg:mt-6">
-                    <h3 className="text-base font-medium text-gray-900">{perk.name}</h3>
-                    <p className="mt-3 text-sm text-gray-500">{perk.description}</p>
+                    <h3 className="text-base font-medium text-gray-900">
+                      {perk.name}
+                    </h3>
+                    <p className="mt-3 text-sm text-gray-500 dark:text-gray-600">
+                      {perk.description}
+                    </p>
                   </div>
                 </div>
               ))}
@@ -579,6 +712,8 @@ export default function HomePage() {
           </div>
         </section>
       </main>
+
+      <Footer />
     </div>
-  )
+  );
 }
