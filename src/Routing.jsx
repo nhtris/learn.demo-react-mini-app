@@ -10,7 +10,7 @@ export default function Routing() {
   return (
     <Router>
       <ScrollToTop />
-      <SlideRoutes>
+      <SlideRoutes duration={600}>
         <Route path="*" element={<HomePage />} />
         <Route path="/products" element={<ProductsPage />} />
         <Route path="/product-detail" element={<ProductDetail />} />
