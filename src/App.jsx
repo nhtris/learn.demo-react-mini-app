@@ -21,8 +21,8 @@ DarkModeProvider.propTypes = {
 function AppMode() {
   const { darkMode } = useContext(DarkModeContext);
   return (
-    <div className={darkMode ? "dark" : "light"}>
-      <div className="dark:bg-neutral-500">
+    <div className={darkMode ? "dark" : "light" + "min-h-screen"}>
+      <div className="dark:bg-neutral-500 min-h-screen">
         <Routing />
       </div>
     </div>

@@ -21,7 +21,7 @@
 //   XMarkIcon,
 // } from "@heroicons/react/24/outline";
 // import { ChevronDownIcon } from "@heroicons/react/20/solid";
-import { Link  } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 
@@ -206,12 +206,12 @@ const perks = [
 ];
 
 export default function HomePage() {
-
   return (
     <div className="bg-white dark:bg-neutral-400">
       {/* Mobile menu */}
-
-      <Header isHome />
+      <div className="sticky top-0 z-50">
+        <Header isHome />
+      </div>
       <main>
         {/* Hero section */}
         <div className="relative">

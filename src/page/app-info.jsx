@@ -28,7 +28,7 @@ export default function AppInfo() {
   useEffect(() => {
     const getDarkMode = async () => {
       try {
-        const darkMode = await MiniApp.miniappUtils.darkMode();
+        const darkMode = await MiniApp.miniappUtils.isDarkMode();
         console.log("...darkMode MiniApp.darkMode:", darkMode);
         setDarkMode(darkMode);
       } catch (error) {

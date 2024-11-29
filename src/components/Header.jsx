@@ -245,7 +245,7 @@ export default function Header({ isHome }) {
       </Dialog>
 
       <header className="relative">
-        <nav aria-label="Top">
+        <nav aria-label="Top" className="border-b border-gray-300">
           {/* Top navigation */}
 
           {/* Secondary navigation */}

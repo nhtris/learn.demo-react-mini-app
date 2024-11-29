@@ -10,12 +10,16 @@ export default function Routing() {
   return (
     <Router>
       <ScrollToTop />
-      <SlideRoutes duration={600}>
-        <Route path="*" element={<HomePage />} />
-        <Route path="/products" element={<ProductsPage />} />
-        <Route path="/product-detail" element={<ProductDetail />} />
-        <Route path="/app-info" element={<AppInfo />} />
-      </SlideRoutes>
+
+      <div id="router-slice">
+        {/* {className = 'slide'} */}
+        <SlideRoutes duration={800}>
+          <Route path="*" element={<HomePage />} />
+          <Route path="/products" element={<ProductsPage />} />
+          <Route path="/product-detail" element={<ProductDetail />} />
+          <Route path="/app-info" element={<AppInfo />} />
+        </SlideRoutes>
+      </div>
     </Router>
   );
 }
