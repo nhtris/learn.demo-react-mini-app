@@ -1,3 +1,6 @@
+import { useState, useEffect } from "react";
+import MiniApp from "js-miniapp-sdk";
+
 const navigation = [
   {
     name: "Facebook",
@@ -63,20 +66,27 @@ const navigation = [
 ];
 
 export default function Footer() {
+  const [hostAppInfo, setHostAppInfo] = useState({});
+  useEffect(() => {
+    const getHost = async () => {
+      try {
+        const info = await MiniApp.getHostEnvironmentInfo();
+        console.log("...info MiniApp.getHostEnvironmentInfo:", info);
+        setHostAppInfo(info);
+      } catch (error) {
+        console.error("...error MiniApp.getHostEnvironmentInfo:", error);
+        setHostAppInfo("error");
+      }
+    };
+    getHost();
+  }, []);
 
-  const hostInfo = {
-    sdkVersion: "5.6.1",
-    hostVersion: "5.6.2",
-    hostLocale: "en-US",
-    platformVersion: "17.4",
-    platform: "iOS",
-  };
   return (
     <footer className="bg-white dark:bg-neutral-400">
       <div className="mx-auto max-w-7xl px-6 py-12 md:flex md:items-center md:justify-between lg:px-8">
         <div className="flex flex-col gap-1 text-center mb-6 border-b pb-4">
           {/* {hostInfo.map} */}
-          {Object.entries(hostInfo).map(([key, value]) => (
+          {Object.entries(hostAppInfo).map(([key, value]) => (
             <div key={key}>
               <span className="font-semibold">{key}:</span> {value}
             </div>
