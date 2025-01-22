@@ -233,6 +233,8 @@ function classNames(...classes) {
 
 export default function ProductDetail() {
   // const [open, setOpen] = useState(false)
+
+  const [showCmt, setShowCmt] = useState(false);
   const [selectedSize, setSelectedSize] = useState(product.sizes[0]);
 
   return (
@@ -588,12 +590,26 @@ export default function ProductDetail() {
                   customers
                 </p>
 
-                <a
-                  href="#"
+                <button
+                  // href="#"
+                  onClick={() => setShowCmt(!showCmt)}
                   className="mt-6 inline-flex w-full items-center justify-center rounded-md border border-gray-300 bg-white px-8 py-2 text-sm font-medium text-gray-900 hover:bg-gray-50 sm:w-auto lg:w-full"
                 >
-                  Write a review
-                </a>
+                  {showCmt ? "Comment" : "Write a review"}
+                  {/* Write a review */}
+                </button>
+
+                {showCmt && (
+                  <div className="mt-2">
+                    <textarea
+                      id="comment"
+                      name="comment"
+                      rows={4}
+                      className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                      defaultValue={""}
+                    />
+                  </div>
+                )}
               </div>
             </div>
 
